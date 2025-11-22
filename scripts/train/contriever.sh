@@ -1,6 +1,6 @@
 #!/bin/bash
 TDIR=$CS511MP3/scripts/preprocess/encoded-data
-TRAINDATASETS="${TDIR}/bert-base-uncased/wikipedia_en_20231101_subset"
+TRAINDATASETS="${TDIR}/bert-base-uncased/wikipedia_en_20231101"
 
 rmin=0.05 #min crop ratio
 rmax=0.5 #max crop ratio
