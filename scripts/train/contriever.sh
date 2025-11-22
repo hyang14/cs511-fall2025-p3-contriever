@@ -1,5 +1,5 @@
 #!/bin/bash
-TDIR="/home/xz112/contriever/scripts/preprocess/encoded-data"
+TDIR=$CS511MP3/scripts/preprocess/encoded-data
 TRAINDATASETS="${TDIR}/bert-base-uncased/wikipedia_en_20231101_subset"
 
 rmin=0.05 #min crop ratio
@@ -29,5 +29,5 @@ python3 train.py \
         --scheduler linear \
         --optim adamw \
         --per_gpu_batch_size 64 \
-        --output_dir /home/xz112/contriever/scripts/train/$name 
+        --output_dir $CS511MP3/scripts/train/$name 
 
