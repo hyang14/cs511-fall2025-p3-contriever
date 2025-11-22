@@ -16,7 +16,7 @@ mp=none
 
 name=$POOL-rmin$rmin-rmax$rmax-T$T-$QSIZE-$MOM-$mo-$AUG-$PAUG
 
-python3 train.py \
+python3 $CS511MP3/scripts/train/train.py \
         --model_path $mp \
         --sampling_coefficient $LC \
         --retriever_model_id $mo --pooling $POOL \
