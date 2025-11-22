@@ -1,10 +1,10 @@
 NSPLIT=128 #Must be larger than the number of processes used during training
 FILENAME=wikipedia_en_20231101.txt
-INFILE=${CS511}/scripts/preprocess/${FILENAME}
+INFILE=$CS511/scripts/preprocess/${FILENAME}
 TOKENIZER=bert-base-uncased
 #TOKENIZER=bert-base-multilingual-cased
-SPLITDIR=${CS511}/scripts/preprocess/tmp-tokenization-${TOKENIZER}-${FILENAME}/
-OUTDIR=${CS511}/scripts/preprocess/encoded-data/${TOKENIZER}/$(echo "$FILENAME" | cut -f 1 -d '.')
+SPLITDIR=$CS511/scripts/preprocess/tmp-tokenization-${TOKENIZER}-${FILENAME}/
+OUTDIR=$CS511/scripts/preprocess/encoded-data/${TOKENIZER}/$(echo "$FILENAME" | cut -f 1 -d '.')
 NPROCESS=8
 
 mkdir -p ${SPLITDIR}
@@ -17,7 +17,7 @@ for ((i=0;i<$NSPLIT;i++)); do
     num=$(printf "%03d\n" $i);
     FILE=${SPLITDIR}${num};
     #we used --normalize_text as an additional option for mContriever
-    python3 ${CS511}/scripts/preprocess.py --tokenizer ${TOKENIZER} --datapath ${FILE} --outdir ${OUTDIR} &
+    python3 $CS511/scripts/preprocess.py --tokenizer ${TOKENIZER} --datapath ${FILE} --outdir ${OUTDIR} &
     pids+=($!);
     if (( $i % $NPROCESS == 0 ))
     then
