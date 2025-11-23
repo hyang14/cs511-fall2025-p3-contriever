@@ -162,7 +162,7 @@ if __name__ == "__main__":
     opt = options.parse()
 
     torch.manual_seed(opt.seed)
-    print(opt.output_dir)
+
     directory_exists = os.path.isdir(opt.output_dir)
     checkpoint_exists = False
     if directory_exists:
