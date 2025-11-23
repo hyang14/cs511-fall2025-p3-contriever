@@ -64,7 +64,7 @@ def save(model, optimizer, scheduler, step, opt, dir_path, name):
         "opt": opt,
     }
     torch.save(checkpoint, fp)
-    symlink_force(epoch_path, cp)
+    # symlink_force(epoch_path, cp)
     if not name == "lastlog":
         logger.info(f"Saving model to {epoch_path}")
 
