@@ -30,8 +30,10 @@ python3 $CS511MP3/scripts/train/train.py \
         --optim adamw \
         --per_gpu_batch_size 128 \
         --output_dir $CS511MP3/scripts/train/$name 
-        # origiinal settings:
-        # --per_gpu_batch_size 64 \
-        # --warmup_steps 100 --total_steps 100000 --lr 0.00005 \ 
+
+
+# origiinal settings:
+# --per_gpu_batch_size 64 \
+# --warmup_steps 100 --total_steps 100000 --lr 0.00005 \ 
         
 
