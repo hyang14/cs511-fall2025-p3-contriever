@@ -50,7 +50,9 @@ def train(opt, model, optimizer, scheduler, step):
     collator = data.Collator(opt=opt)
     train_dataset = data.load_data(opt, tokenizer)
     logger.warning(f"Data loading finished for rank {dist_utils.get_rank()}")
+    print(f"Data loading finished for rank {dist_utils.get_rank()}", flush=True) # debug
     logger.info(f"Train dataset length: {len(train_dataset)}")
+    print(f"Train dataset length: {len(train_dataset)}", flush=True) # debug
 
     train_sampler = RandomSampler(train_dataset)
     train_dataloader = DataLoader(
@@ -69,8 +71,11 @@ def train(opt, model, optimizer, scheduler, step):
         train_dataset.generate_offset()
 
         logger.info(f"Start epoch {epoch}")
+        print(f"Start epoch {epoch}", flush=True) # debug
         for i, batch in enumerate(train_dataloader):
             logger.info(f"Batch {i}/{len(train_dataloader)} (epoch {epoch})")
+            if i % 10 == 0: # debug
+                print(f"Batch {i}/{len(train_dataloader)} (epoch {epoch})", flush=True) # debug
             step += 1
 
             # Move tensors to device
@@ -98,6 +103,7 @@ def train(opt, model, optimizer, scheduler, step):
                     log += f" | Memory: {torch.cuda.max_memory_allocated()//1e9} GiB"
 
                 logger.info(log)
+                print(log, flush=True) # debug
                 run_stats.reset()
 
             if step % opt.eval_freq == 0:
@@ -111,11 +117,13 @@ def train(opt, model, optimizer, scheduler, step):
 
                 if dist_utils.is_main():
                     utils.save(model, optimizer, scheduler, step, opt, opt.output_dir, f"lastlog")
+                    print(f"Saved lastlog checkpoint at step {step}", flush=True) # debug
 
                 model.train()
 
             if dist_utils.is_main() and step % opt.save_freq == 0:
                 utils.save(model, optimizer, scheduler, step, opt, opt.output_dir, f"step-{step}")
+                print(f"Saved checkpoint at step {step}", flush=True) # debug
 
             if step > opt.total_steps:
                 break

@@ -24,11 +24,14 @@ python3 $CS511MP3/scripts/train/train.py \
         --train_data $TRAINDATASETS --loading_mode split \
         --ratio_min $rmin --ratio_max $rmax --chunk_length 256 \
         --momentum $MOM --queue_size $QSIZE --temperature $T \
-        --warmup_steps 100 --total_steps 100000 --lr 0.00005 \
+        --warmup_steps 100 --total_steps 1000 --lr 0.00005 \ 
         --name $name \
         --scheduler linear \
         --optim adamw \
         --per_gpu_batch_size 128 \
-        # --per_gpu_batch_size 64 \
         --output_dir $CS511MP3/scripts/train/$name 
+        # origiinal settings:
+        # --per_gpu_batch_size 64 \
+        # --warmup_steps 100 --total_steps 100000 --lr 0.00005 \ 
+        
 
