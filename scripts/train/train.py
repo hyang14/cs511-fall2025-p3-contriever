@@ -42,7 +42,6 @@ def train(opt, model, optimizer, scheduler, step):
 
     tb_logger = utils.init_tb_logger(opt.output_dir)
 
-    print(opt.output_dir)
     logger.info("Data loading")
     if isinstance(model, torch.nn.parallel.DistributedDataParallel):
         tokenizer = model.module.tokenizer
@@ -163,7 +162,7 @@ if __name__ == "__main__":
     opt = options.parse()
 
     torch.manual_seed(opt.seed)
-    
+    print(opt.output_dir)
     directory_exists = os.path.isdir(opt.output_dir)
     checkpoint_exists = False
     if directory_exists:
