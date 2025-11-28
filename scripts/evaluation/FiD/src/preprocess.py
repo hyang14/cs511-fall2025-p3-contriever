@@ -52,13 +52,13 @@ if __name__ == "__main__":
     NQ_idx = {}
     NQ_passages = {}
     for split in ['test']:
-        with open('open_domain_data/download/NQ.' + split + '.idx.json', 'r') as fin:
+        with open('/content/drive/MyDrive/CS511MP3/cs511-fall2025-p3-contriever/scripts/evaluation/FiD/open_domain_data/download/NQ.' + split + '.idx.json', 'r') as fin:
             NQ_idx[split] = json.load(fin)
-        with open('open_domain_data/download/nq_passages/' + (split + '.json'), 'r') as fin:
+        with open('/content/drive/MyDrive/CS511MP3/cs511-fall2025-p3-contriever/scripts/evaluation/FiD/open_domain_data/download/nq_passages/' + (split + '.json'), 'r') as fin:
             NQ_passages[split] = json.load(fin)
 
     originaldev = []
-    with open('open_domain_data/download/NQ-open.dev.jsonl') as fin:
+    with open('/content/drive/MyDrive/CS511MP3/cs511-fall2025-p3-contriever/scripts/evaluation/FiD/open_domain_data/download/NQ-open.dev.jsonl') as fin:
         for k, example in enumerate(fin):
             example = json.loads(example)
             originaldev.append(example)
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     print(f"Selecting test examples")
     NQ_test = select_examples_NQ(originaldev, NQ_idx['test'][:num_questions], passages, NQ_passages['test'])
     
-    NQ_save_path = 'open_domain_data/NQ'
+    NQ_save_path = '/content/drive/MyDrive/CS511MP3/cs511-fall2025-p3-contriever/scripts/evaluation/FiD/open_domain_data/NQ'
     os.makedirs(NQ_save_path, exist_ok=True)
 
     with open(NQ_save_path+'/test.json', 'w') as fout:
