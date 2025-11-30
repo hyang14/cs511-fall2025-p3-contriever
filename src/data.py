@@ -23,6 +23,12 @@ def load_data(opt, tokenizer):
         data = load_dataset(path, opt.loading_mode)
         if data is not None:
             datasets[path] = Dataset(data, opt.chunk_length, tokenizer, opt)
+    
+    # If there is only one dataset, return it directly 
+    # to use RamdomSampler to do global shuffle
+    if len(datasets) == 1:
+        return list(datasets.values())[0]
+    
     dataset = MultiDataset(datasets)
     dataset.set_prob(coeff=opt.sampling_coefficient)
     return dataset
