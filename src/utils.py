@@ -24,6 +24,13 @@ else:
 def init_logger(args, stdout_only=False):
     if torch.distributed.is_initialized():
         torch.distributed.barrier()
+
+    # remove default handlers to make sure logs are produced correctly.
+    root_logger = logging.getLogger()
+    if root_logger.handlers:
+        for handler in root_logger.handlers[:]:
+            root_logger.removeHandler(handler)
+
     stdout_handler = logging.StreamHandler(sys.stdout)
     handlers = [stdout_handler]
     if not stdout_only:
