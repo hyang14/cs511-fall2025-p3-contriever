@@ -156,7 +156,7 @@ def eval_model(opt, query_encoder, doc_encoder, tokenizer, tb_logger, step):
 
 
 if __name__ == "__main__":
-    logger.info("Start")
+    # logger.info("Start")
 
     options = Options()
     opt = options.parse()
@@ -173,6 +173,7 @@ if __name__ == "__main__":
     if not directory_exists and dist_utils.is_main():
         options.print_options(opt)
     utils.init_logger(opt)
+    logger.info("Start")
 
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
