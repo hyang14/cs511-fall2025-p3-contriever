@@ -18,7 +18,7 @@ TRAINDATASETS=/content/local_data/wikipedia_en_20231101
 rmin=0.05 #min crop ratio
 rmax=0.5 #max crop ratio
 T=0.05
-QSIZE=4096 # Reduced queue size
+QSIZE=32768 # Reduced queue size
 MOM=0.999
 POOL=average
 AUG=delete
@@ -41,5 +41,5 @@ python3 $CS511MP3/scripts/train/train.py \
         --name $name \
         --scheduler linear \
         --optim adamw \
-        --per_gpu_batch_size 256 \
+        --per_gpu_batch_size 128 \
         --output_dir $CS511MP3/scripts/train/$name 
