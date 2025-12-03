@@ -29,5 +29,5 @@ python3 $CS511MP3/scripts/train/train.py \
         --name $name \
         --scheduler linear \
         --optim adamw \
-        --per_gpu_batch_size 128 \
+        --per_gpu_batch_size 256 \
         --output_dir $CS511MP3/scripts/train/$name 
