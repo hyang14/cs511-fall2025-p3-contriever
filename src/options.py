@@ -100,7 +100,7 @@ class Options:
         self.parser.add_argument(
             "--eval_freq", type=int, default=500, help="evaluate model every <eval_freq> steps during training"
         )
-        self.parser.add_argument("--save_freq", type=int, default=50000)
+        self.parser.add_argument("--save_freq", type=int, default=5000)
         self.parser.add_argument("--maxload", type=int, default=None)
         self.parser.add_argument("--label_smoothing", type=float, default=0.0)
 
